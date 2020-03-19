@@ -1,0 +1,35 @@
+{
+  "name": "Easy Insta Save",
+  "version": "1.0",
+  "description": "__MSG_extName__",
+  "permissions": ["activeTab", "*://*.instagram.com/*"],
+  "default_locale": "en",
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.instagram.com/*"],
+      "run_at": "document_idle",
+      "all_frames": true,
+      "js": ["contentScript.js"]
+    }
+  ],
+
+  "page_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/easyinstasave16.png",
+      "32": "images/easyinstasave32.png",
+      "48": "images/easyinstasave48.png",
+      "128": "images/easyinstasave128.png"
+    }
+  },
+
+  "icons": {
+    "16": "images/easyinstasave16.png",
+    "32": "images/easyinstasave32.png",
+    "48": "images/easyinstasave48.png",
+    "128": "images/easyinstasave128.png"
+  },
+
+  "manifest_version": 2
+}
