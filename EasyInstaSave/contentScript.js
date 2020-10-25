@@ -13,15 +13,22 @@ function possibilitaSalvar(){
     possibilitaSalvarVideos();
 }
 
+var divs_IMAGEM //variavel declarada fora do metodo abaixo para näo serem excluidas após o fim da execução
 /**
  * Método para retirar as divs que ficam na frente das fotos.
  * @author Vitor Ceolin
  */
 function possibilitaSalvarFotos() {
-    var divsBloqueadoras = document.getElementsByClassName("_9AhH0"); // cria uma lista com as divs
+    divs_IMAGEM = document.getElementsByClassName("_9AhH0"); // cria uma lista com as divs
 
-    while(divsBloqueadoras.length > 0){
-        divsBloqueadoras[0].parentNode.removeChild(divsBloqueadoras[0]); //apaga a div
+    for(var i = 0; i < divs_IMAGEM.length; i++)//for para percorrer todas as divs de video encontradas
+    {
+        //dando um ID para as divs
+        divs_IMAGEM[i].id = "divs_IMAGEM_" + i;
+        //aqui remove as classes para que possibilite o video ser salvo
+        divs_IMAGEM[i].oncontextmenu = function () {
+            this.classList.remove("_9AhH0"); //apaga a div para que a foto possa ser salva
+        }
     }
 }   
 
@@ -44,12 +51,14 @@ function possibilitaSalvarVideos() {
         divs_fXIG0[i].id = "divs_fXIG0_" + i;
         divs_VIDEO[i].id = "divs_VIDEO_" + i;
 
+        //o onmouseover serve para READICIONAR as divs depois do right click, para que não haja mal funcionamento no player
         divs_VIDEO[i].onmouseover = function(){
             var split = this.id.split("_"); //separa o id pra pegar o valor de I
             var _id = split[2]; // o id fica na terceira posição ( divs_VIDEO_ID )
             document.getElementById("divs_PyenC_" + _id.toString()).classList.add("PyenC");
             document.getElementById("divs_fXIG0_" + _id.toString()).classList.add("fXIG0");
         };
+        //aqui remove as classes para que possibilite o video ser salvo
         divs_fXIG0[i].oncontextmenu = function () {
             this.classList.remove("fXIG0");
             var split = this.id.split("_"); //separa o id pra pegar o valor de I
