@@ -43,20 +43,23 @@ var divs_VIDEO;
 function possibilitaSalvarVideos() {
         divs_PyenC = document.getElementsByClassName("PyenC");
         divs_fXIG0 = document.getElementsByClassName("fXIG0");
+        divs_8jZFn = document.getElementsByClassName("_8jZFn"); //essa div é a da "thumbnail" do vídeo.
         divs_VIDEO = document.getElementsByClassName("_5wCQW");
     for(var i = 0; i < divs_fXIG0.length; i++)//for para percorrer todas as divs de video encontradas
     {
         //dando um ID para as divs
         divs_PyenC[i].id = "divs_PyenC_" + i;
         divs_fXIG0[i].id = "divs_fXIG0_" + i;
+        divs_8jZFn[i].id = "divs_8jZFn_" + i;
         divs_VIDEO[i].id = "divs_VIDEO_" + i;
 
         //o onmouseover serve para READICIONAR as divs depois do right click, para que não haja mal funcionamento no player
-        divs_VIDEO[i].onmouseover = function(){
+        divs_VIDEO[i].onmouseover = function() {
             var split = this.id.split("_"); //separa o id pra pegar o valor de I
             var _id = split[2]; // o id fica na terceira posição ( divs_VIDEO_ID )
             document.getElementById("divs_PyenC_" + _id.toString()).classList.add("PyenC");
             document.getElementById("divs_fXIG0_" + _id.toString()).classList.add("fXIG0");
+            document.getElementById("divs_8jZFn_" + _id.toString()).classList.add("_8jZFn");
         };
         //aqui remove as classes para que possibilite o video ser salvo
         divs_fXIG0[i].oncontextmenu = function () {
@@ -64,6 +67,7 @@ function possibilitaSalvarVideos() {
             var split = this.id.split("_"); //separa o id pra pegar o valor de I
             var _id = split[2]; // o id fica na terceira posição ( divs_PyenC_ID )
             document.getElementById("divs_PyenC_" + _id.toString()).classList.remove("PyenC");
+            document.getElementById("divs_8jZFn_" + _id.toString()).classList.remove("_8jZFn"); //remove a thumbnail também
         };
     }
 }
